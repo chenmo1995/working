@@ -52,4 +52,12 @@ logging:
 #mybatis-plus:
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,开发调试用
+
+# 可以看到容器中注入了哪些bean，又有哪些bean因为条件不满足而注入失败
 #debug: true
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+      update-strategy: ignored

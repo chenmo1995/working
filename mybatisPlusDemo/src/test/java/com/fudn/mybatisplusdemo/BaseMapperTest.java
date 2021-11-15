@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fudn.mybatisplusdemo.mapper.MpUserMapper;
 import com.fudn.mybatisplusdemo.pojo.entity.MpUserPojo;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -35,6 +37,7 @@ import java.util.Map;
  * @author fdn
  * @since 2021-08-26 17:03
  */
+@Slf4j
 @SpringBootTest
 public class BaseMapperTest {
     @Autowired
@@ -247,13 +250,32 @@ public class BaseMapperTest {
         // 即使条件为null也不会更新全表。但是！！！如果Wrapper没有设置任何条件，仍然会更新全表！
         updateWrapper.eq("user_type", null);
         userMapper.update(updatePojo, updateWrapper);
+    }
 
-        // 查询
-        QueryWrapper<MpUserPojo> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(MpUserPojo::getName, "修改后的值")
-                .eq(MpUserPojo::getUserType, null);
-        List<MpUserPojo> mpUserPojos = userMapper.selectList(queryWrapper);
-        System.out.println(mpUserPojos.size());
+    @Test
+    public void testColumnNullUpdate() {
+        //值为null的属性不会被更新
+//        MpUserPojo updatePojo = new MpUserPojo();
+//        updatePojo.setName("付达南");
+//        log.info("updatePojo:{}", updatePojo);
+//        UpdateWrapper<MpUserPojo> updateWrapper = new UpdateWrapper<>();
+//        updateWrapper.lambda().eq(MpUserPojo::getId, "1430947383204880386");
+//        int update = userMapper.update(updatePojo, updateWrapper);
+//        log.info("affectedRows：{}", update);
+
+        //但是如果我就是想将字段的值设置为null呢
+        MpUserPojo updatePojo = new MpUserPojo();
+        updatePojo.setName("付达南4");
+        updatePojo.setCreateTime(null);
+
+        MpUserPojo updatePojo2 = new MpUserPojo();
+        BeanUtils.copyProperties(updatePojo,updatePojo2);
+
+        log.info("updatePojo:{}", updatePojo2);
+        UpdateWrapper<MpUserPojo> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.lambda().eq(MpUserPojo::getId, "1430947559634022401");
+        int update = userMapper.update(updatePojo2, updateWrapper);
+        log.info("affectedRows：{}", update);
     }
 
     /**

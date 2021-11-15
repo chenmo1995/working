@@ -7,6 +7,7 @@
         <module>springDiy</module>
         <module>spring_demo</module>
         <module>mybatisPlusDemo</module>
+        <module>mini-mybatis-plus</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
