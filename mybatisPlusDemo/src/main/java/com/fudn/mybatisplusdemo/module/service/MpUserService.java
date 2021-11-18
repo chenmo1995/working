@@ -1,10 +1,9 @@
-package com.fudn.mybatisplusdemo.service;
+package com.fudn.mybatisplusdemo.module.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.fudn.mybatisplusdemo.pojo.entity.MpUserPojo;
-import com.fudn.mybatisplusdemo.pojo.params.QueryUserParams;
-import org.springframework.stereotype.Component;
+import com.fudn.mybatisplusdemo.module.pojo.entity.MpUserPojo;
+import com.fudn.mybatisplusdemo.module.pojo.params.QueryUserParams;
 
 /**
  * 继承MyBatis-Plus提供的IService接口

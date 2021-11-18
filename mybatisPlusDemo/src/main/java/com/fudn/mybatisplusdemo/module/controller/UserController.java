@@ -1,11 +1,11 @@
-package com.fudn.mybatisplusdemo.controller;
+package com.fudn.mybatisplusdemo.module.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fudn.mybatisplusdemo.common.resultReturn.RestResponse;
-import com.fudn.mybatisplusdemo.pojo.dto.AdduserDTO;
-import com.fudn.mybatisplusdemo.pojo.entity.MpUserPojo;
-import com.fudn.mybatisplusdemo.pojo.params.QueryUserParams;
-import com.fudn.mybatisplusdemo.service.MpUserService;
+import com.fudn.mybatisplusdemo.module.pojo.dto.AdduserDTO;
+import com.fudn.mybatisplusdemo.module.pojo.entity.MpUserPojo;
+import com.fudn.mybatisplusdemo.module.pojo.params.QueryUserParams;
+import com.fudn.mybatisplusdemo.module.service.MpUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class UserController {
     MpUserService userService;
 
     /**
-     * @param user
+     * @param adduserDTO
      * @return
      */
     @PostMapping("/addUser")
