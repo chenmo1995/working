@@ -1,13 +1,12 @@
-package com.fudn.mybatisplusdemo.service.impl;
+package com.fudn.mybatisplusdemo.module.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.fudn.mybatisplusdemo.mapper.MpUserMapper;
-import com.fudn.mybatisplusdemo.pojo.entity.MpUserPojo;
-import com.fudn.mybatisplusdemo.pojo.params.QueryUserParams;
-import com.fudn.mybatisplusdemo.service.MpUserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.fudn.mybatisplusdemo.module.mapper.MpUserMapper;
+import com.fudn.mybatisplusdemo.module.pojo.entity.MpUserPojo;
+import com.fudn.mybatisplusdemo.module.pojo.params.QueryUserParams;
+import com.fudn.mybatisplusdemo.module.service.MpUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

@@ -2,6 +2,7 @@ package com.fudn.mybatisplusdemo.common.resultReturn;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,15 +21,22 @@ import java.beans.Transient;
 @NoArgsConstructor
 @Builder
 public class RestResponse<T> {
+
+    @ApiModelProperty(name = "code", value = "返回编码")
     private int code;
 
+    @ApiModelProperty(name = "msg", value = "消息描述")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String msg;
 
+    @ApiModelProperty(name = "data", value = "业务数据（一般来说只有查询的接口才需要返回业务数据）")
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
 
     private boolean success = true;
+
+    @ApiModelProperty(name = "currentTime", value = "当前时间")
+    private long currentTime = System.currentTimeMillis();
 
     @JsonIgnore
     @Transient
@@ -78,6 +86,10 @@ public class RestResponse<T> {
 
     public static <T> RestResponse<T> build(T data, int code, String msg) {
         return restResult(data, code, msg);
+    }
+
+    public static <T> RestResponse<T> build(int code, String msg) {
+        return restResult(null, code, msg);
     }
 
     private static <T> RestResponse<T> restResult(T data, int code, String msg) {

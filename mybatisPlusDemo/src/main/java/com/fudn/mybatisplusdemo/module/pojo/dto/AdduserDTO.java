@@ -1,4 +1,4 @@
-package com.fudn.mybatisplusdemo.pojo.dto;
+package com.fudn.mybatisplusdemo.module.pojo.dto;
 
 import com.fudn.mybatisplusdemo.constraint.MyConstraint;
 import io.swagger.annotations.ApiModel;
