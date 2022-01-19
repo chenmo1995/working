@@ -3,12 +3,19 @@ package com.javaSE.aboutString;
 
 import com.javaSE.lambda.stream.Person;
 
+import java.util.Arrays;
+
 /**
  * @author fdn
  * @since 2021-09-08 09:57
  */
 public class StringUtilsDiy {
     public static void main(String[] args) {
+        String a = "123456";
+        String[] split = a.split("_\\|");
+        System.out.println(Arrays.asList(split));
+
+
         // exceptionTest();
 //        timeTest();
 //        newString();

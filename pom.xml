@@ -8,6 +8,7 @@
         <module>spring_demo</module>
         <module>mybatisPlusDemo</module>
         <module>mini-mybatis-plus</module>
+        <module>juc</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
