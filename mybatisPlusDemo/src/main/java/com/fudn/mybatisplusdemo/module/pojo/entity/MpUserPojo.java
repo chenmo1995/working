@@ -1,4 +1,4 @@
-package com.fudn.mybatisplusdemo.pojo.entity;
+package com.fudn.mybatisplusdemo.module.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;

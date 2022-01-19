@@ -9,7 +9,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author fdn
  * @since 2021-08-26 15:47
  */
-@MapperScan("com.fudn.mybatisplusdemo.mapper")
+@MapperScan("com.fudn.mybatisplusdemo.module.mapper")
 @SpringBootApplication
 //@EnableApiLog
 @EnableSwagger2

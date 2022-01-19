@@ -1,4 +1,4 @@
-package com.fudn.mybatisplusdemo.pojo.params;
+package com.fudn.mybatisplusdemo.module.pojo.params;
 
 import com.fudn.mybatisplusdemo.common.pojo.PageQuery;
 import io.swagger.annotations.ApiModelProperty;

@@ -1,7 +1,7 @@
-package com.fudn.mybatisplusdemo.mapper;
+package com.fudn.mybatisplusdemo.module.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.fudn.mybatisplusdemo.pojo.entity.MpUserPojo;
+import com.fudn.mybatisplusdemo.module.pojo.entity.MpUserPojo;
 import org.springframework.stereotype.Repository;
 
 
