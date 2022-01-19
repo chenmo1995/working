@@ -1,6 +1,7 @@
 package com.javaSE.newDateApi;
 
 
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
@@ -105,8 +106,13 @@ public class NewDateApiTest {
         System.out.println("其他格式:" + other);
         String format1 = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
         System.out.println("自定义格式化后:" + format1);
-        LocalDateTime parse = LocalDateTime.parse(format, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+        String format2 = now.format(DateTimeFormatter.ofPattern("yyyy年MM月dd日"));
+        System.out.println("年月日自定义格式化后:" + format2);
+        LocalDateTime parse = LocalDateTime.parse(format1, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
         System.out.println("反格式化:" + parse);
+
+        String date5 = new SimpleDateFormat("yyyy年MM月dd").format(new Date());
+        System.out.println(date5);
     }
 
 }

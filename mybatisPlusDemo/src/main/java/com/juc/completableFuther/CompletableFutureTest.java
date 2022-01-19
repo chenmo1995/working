@@ -1,0 +1,89 @@
+package com.juc.completableFuther;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+
+/**
+ * @author fdn
+ * @since 2021-11-23 18:40
+ */
+public class CompletableFutureTest {
+    static List<NetMall> list = Arrays.asList(
+            new NetMall("jd"),
+            new NetMall("tmall"),
+            new NetMall("pdd"),
+            new NetMall("pdd"),
+            new NetMall("pdd"),
+            new NetMall("pdd"),
+            new NetMall("pdd"),
+            new NetMall("pdd"),
+            new NetMall("pdd"),
+            new NetMall("pdd"),
+            new NetMall("mi")
+    );
+
+    public static List<String> findPriceSync(List<NetMall> list, String productName) {
+        return list.stream().
+                map(mall -> String.format(productName + " %s price is %.2f", mall.getNetMallName(), mall.getPriceByName(productName)))
+                .collect(Collectors.toList());
+    }
+
+    public static List<String> findPriceASync(List<NetMall> list, String productName) {
+        return list.stream()
+                .map(mall -> CompletableFuture.supplyAsync(
+                        () -> String.format(productName + " %s price is %.2f", mall.getNetMallName(), mall.getPriceByName(productName))))
+                .collect(Collectors.toList()).stream()
+                .map(CompletableFuture::join)
+                .collect(Collectors.toList());
+    }
+
+
+    public static void main(String[] args) {
+        long startTime = System.currentTimeMillis();
+        List<String> list1 = findPriceSync(list, "thinking in java");
+        for (String element : list1) {
+            System.out.println(element);
+        }
+        long endTime = System.currentTimeMillis();
+        System.out.println("----costTime: " + (endTime - startTime) + " 毫秒");
+
+        long startTime2 = System.currentTimeMillis();
+        List<String> list2 = findPriceASync(list, "thinking in java");
+        for (String element : list2) {
+            System.out.println(element);
+        }
+        long endTime2 = System.currentTimeMillis();
+        System.out.println("----costTime: " + (endTime2 - startTime2) + " 毫秒");
+    }
+}
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+class NetMall {
+
+    private String netMallName;
+
+
+    public double getPriceByName(String productName) {
+        return calcPrice(productName);
+    }
+
+    private double calcPrice(String productName) {
+        try {
+            TimeUnit.MILLISECONDS.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return ThreadLocalRandom.current().nextDouble() + productName.charAt(0);
+    }
+}
