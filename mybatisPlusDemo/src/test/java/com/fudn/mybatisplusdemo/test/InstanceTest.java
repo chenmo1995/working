@@ -1,6 +1,7 @@
 package com.fudn.mybatisplusdemo.test;
 
 
+
 /**
  * <P>Java 判断一个类是否是另一个类的子孙类<P>
  *
@@ -19,16 +20,36 @@ public class InstanceTest {
         B b = new C();
         C c = new C();
 
+        A a1 = new A();
 
+
+        /**
+         * 同 isInstance
+         */
         System.out.println(a instanceof B); // true
         System.out.println(b instanceof B); // true
         System.out.println(c instanceof B); // true
+        System.out.println(c instanceof A); // true
+        System.out.println(c instanceof C); // true
+        System.out.println(a1 instanceof C); // false
 
         //这结果奇奇怪怪的
+        /**
+         * true if {@code obj} is an instance of this class
+         * 参数是个对象，判断参数中对象是否是调用者的实例，这几个都是 Class 类的对象，肯定返回 false 了
+         */
         System.out.println(A.class.isInstance(B.class)); // false
         System.out.println(B.class.isInstance(B.class)); // false
         System.out.println(C.class.isInstance(B.class)); // false
+        System.out.println(C.class.isInstance(C.class)); // false
+        System.out.println(C.class.isInstance(c)); // true
+        System.out.println(Class.class.isInstance(c)); // false
+        System.out.println(Class.class.isInstance(C.class)); // true
 
+        /**
+         * whether objects of the type {@code cls} can be assigned to objects of this class
+         * 参数中的类是否可以由调用者的类派生过来
+         */
         System.out.println(A.class.isAssignableFrom(B.class)); // true
         System.out.println(B.class.isAssignableFrom(B.class)); // true
         System.out.println(C.class.isAssignableFrom(B.class)); // false

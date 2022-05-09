@@ -37,7 +37,7 @@ public class ClassLoaderTest extends ClassLoader{
         System.out.println("自定义findClass被调用...");
         String path = baseUrl + className.replace(".", "\\") + ".class";
         System.out.println("当前加载的类的全限定名是 ：" + path);
-        byte data[] = findData(path);
+        byte[] data = findData(path);
         Class<?> calzz = defineClass(className, data, 0, data.length);
         return calzz;
     }

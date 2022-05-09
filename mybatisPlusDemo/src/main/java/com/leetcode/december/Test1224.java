@@ -57,52 +57,7 @@ public class Test1224 {
         return result;
     }
 
-    /**
-     * 47. 全排列 II
-     * <p>
-     * 肯定用不上 startIndex ，因为元素可以乱序取
-     * 元素不能重复取，可以用 used 数组来过滤
-     * 相同元素同一层也不能取
-     *
-     * @param nums
-     * @return
-     */
-    List<List<Integer>> result;
-    List<Integer> path;
-    int[] used;
 
-    public List<List<Integer>> permuteUnique(int[] nums) {
-        result = new ArrayList<>();
-        path = new ArrayList<>();
-        used = new int[nums.length];
-        // 先排序，方便后面判断是否使用过相等但不是同一个元素
-        Arrays.sort(nums);
-        backTracing(nums, used);
-        return result;
-    }
-
-    private void backTracing(int[] nums, int[] used) {
-        // 收集
-        if (path.size() == nums.length) {
-            result.add(new ArrayList<>(path));
-            return;
-        }
-        // 终止条件写在了收集结果里面
-
-        // 单次遍历
-        for (int i = 0; i < nums.length; i++) {
-            // 两种情况不能取，一是该元素已经在这一【树枝】使用过，
-            // 一是前一个元素与自己相同，且前一个元素在这一【数层】使用过
-            if ((i > 0 && nums[i] == nums[i - 1]) && used[i - 1] == 0 || used[i] == 1) {
-                continue;
-            }
-            path.add(nums[i]);
-            used[i] = 1;
-            backTracing(nums, used);
-            used[i] = 0;
-            path.remove(path.size() - 1);
-        }
-    }
 }
 
 

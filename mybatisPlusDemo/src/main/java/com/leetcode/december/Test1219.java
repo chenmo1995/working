@@ -9,50 +9,7 @@ import java.util.stream.Collectors;
  */
 public class Test1219 {
 
-    /**
-     * 40. 组合总和 II
-     *
-     * @param candidates
-     * @param target
-     * @return
-     */
-    List<List<Integer>> result = new ArrayList<>();
-    List<Integer> path = new ArrayList<>();
-    // 记录前面一个数是在同一数层还是在同一树枝
-    int[] used;
 
-    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        used = new int[candidates.length];
-        // 必须排序，不然后面用used去重实现不了
-        Arrays.sort(candidates);
-        backTracing(0, candidates, target, 0, used);
-        return result;
-    }
-
-    private void backTracing(int sum, int[] candidates, int target, int startIndex, int[] used) {
-        if (sum == target) {
-            result.add(new ArrayList<>(path));
-            return;
-        }
-        // && sum + candidates[i] <= target; 这个剪枝一般是在数组从小到大排序了之后才可以使用的
-        for (int i = startIndex; i < candidates.length && sum + candidates[i] <= target; i++) {
-            if (i > 0 && candidates[i] == candidates[i - 1] && used[i - 1] == 0) {
-                continue;
-            }
-            // used[i - 1] == 1，说明同一树支candidates[i - 1]使用过
-            // used[i - 1] == 0，说明同一树层candidates[i - 1]使用过
-            path.add(candidates[i]);
-            sum += candidates[i];
-            used[i] = 1;
-            // 带着1进入递归下一层
-            backTracing(sum, candidates, target, i + 1, used);
-            used[i] = 0;
-            // 带着0进入for循环的下一层
-            sum -= candidates[i];
-            path.remove(path.size() - 1);
-        }
-
-    }
 
     /**
      * 997. 找到小镇的法官

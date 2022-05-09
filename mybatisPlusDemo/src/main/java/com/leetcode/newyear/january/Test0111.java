@@ -6,6 +6,8 @@ import java.util.Queue;
 import java.util.Set;
 
 /**
+ * 1036. 逃离大迷宫
+ *
  * @author fdn
  * @since 2022-01-11 10:57
  */
@@ -100,7 +102,7 @@ public class Test0111 {
 
         /**
          * Set::contains 方法中使用了 key 的 equals 方法，使用的是 Object::equals 方法，直接用 == 判断内存地址的
-         * 我们希望 x,y 相等，就算对象相等，所以需要重写 equals 方法，自然也需要重写一下 hashcode ，根据 x,y 来写（因为对象相等，hashcode 必须相等）
+         * 我们希望 x,y 相等，就认为对象相等，所以需要重写 equals 方法，自然也需要重写一下 hashcode ，根据 x,y 来写（因为对象相等，hashcode 必须相等）
          *
          * @param obj
          * @return

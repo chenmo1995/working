@@ -416,6 +416,42 @@ public class Test1225TreeNode {
     }
 
     /**
+     * 124. 二叉树中的最大路径和
+     * <p>
+     * 选取一个节点，包括他的路径，要么上，要么下，并且，选择了下之后不能选择上了；
+     * 所以路径一定有一个最高点，左子树只能往下，右子树也只能往下
+     *
+     * @param root
+     * @return
+     */
+    int max = Integer.MIN_VALUE;
+
+    public int maxPathSum(TreeNode root) {
+        // 节点的最大贡献值
+        maxGain(root);
+        return max;
+    }
+
+    /**
+     * 当前节点的最大贡献值：node.val + max(left, right)
+     *
+     * @param node
+     * @return
+     */
+    private int maxGain(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        // 不会为负值，为负值就不选了；因为后面计算最大路径的时候还要加他，所以设为 0
+        int leftMaxGain = Math.max(maxGain(node.left), 0);
+        int rightMaxGain = Math.max(maxGain(node.right), 0);
+        // 当前节点为最高点的最大路径
+        int nodeGain = leftMaxGain + rightMaxGain + node.val;
+        max = Math.max(max, nodeGain);
+        return Math.max(leftMaxGain, rightMaxGain) + node.val;
+    }
+
+    /**
      * 226. 翻转二叉树   迭代  前序
      *
      * @param root
@@ -555,18 +591,18 @@ public class Test1225TreeNode {
      * @param root
      * @return
      */
-    int max = 0;
+    int max1 = 0;
 
     public int maxDepth(TreeNode root) {
 
         preTraversal2(root, 0);
-        return max;
+        return max1;
     }
 
     private void preTraversal2(TreeNode node, int deep) {
         // 终止条件，node == null ，更新一下max
         if (node == null) {
-            max = Math.max(max, deep);
+            max1 = Math.max(max1, deep);
             return;
         }
         preTraversal2(node.left, deep + 1);

@@ -22,7 +22,7 @@ public class GlobalErrorHandler implements ErrorController
     @RequestMapping(value = ERROR_PATH)
     public RestResponse<Object> handleError(HttpServletRequest request) {
         HttpStatus status = getStatus(request);
-        return RestResponse.build(Integer.valueOf(status.value()), status.getReasonPhrase());
+        return RestResponse.build(status.value(), status.getReasonPhrase());
     }
 
     private HttpStatus getStatus(HttpServletRequest request) {

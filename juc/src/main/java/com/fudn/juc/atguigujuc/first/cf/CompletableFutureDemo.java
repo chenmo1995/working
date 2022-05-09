@@ -23,6 +23,8 @@ public class CompletableFutureDemo {
                 TimeUnit.SECONDS.sleep(2);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                // 如果线程遇到异常，则终止线程
+                Thread.currentThread().interrupt();
             }
             return 1;
         }, threadPoolExecutor).thenApply(f -> f + 2).whenComplete((v, e) -> {

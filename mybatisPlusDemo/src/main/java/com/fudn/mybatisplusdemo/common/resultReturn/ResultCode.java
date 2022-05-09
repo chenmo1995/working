@@ -3,6 +3,7 @@ package com.fudn.mybatisplusdemo.common.resultReturn;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -30,40 +31,40 @@ public enum ResultCode implements IResultCode {
      */
     USER_NOT_FOUND(401, "Current User Not Found"),
 
-//    /**
-//     * 系统异常
-//     */
-//    INTERNAL_SERVER_ERROR(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Internal Server Error"),
-//
-//    /**
-//     * 未认证
-//     */
-//    UN_AUTHORIZED(HttpServletResponse.SC_UNAUTHORIZED, "Request Unauthorized"),
-//
-//    /**
-//     * 404
-//     */
-//    NOT_FOUND(HttpServletResponse.SC_NOT_FOUND, "404 Not Found"),
-//
-//    /**
-//     * 不支持的Method
-//     */
-//    METHOD_NOT_SUPPORTED(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Method Not Supported"),
-//
-//    /**
-//     * MediaType不支持
-//     */
-//    MEDIA_TYPE_NOT_SUPPORTED(HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Media Type Not Supported"),
-//
-//    /**
-//     * 禁止访问
-//     */
-//    FORBIDDEN(HttpServletResponse.SC_FORBIDDEN, "403 Forbidden"),
-//
-//    /**
-//     * 参数校验失败
-//     */
-//    PARAM_VALID_ERROR(HttpServletResponse.SC_BAD_REQUEST, "Parameter Validation Error"),
+    /**
+     * 系统异常
+     */
+    INTERNAL_SERVER_ERROR(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Internal Server Error"),
+
+    /**
+     * 未认证
+     */
+    UN_AUTHORIZED(HttpServletResponse.SC_UNAUTHORIZED, "Request Unauthorized"),
+
+    /**
+     * 404
+     */
+    NOT_FOUND(HttpServletResponse.SC_NOT_FOUND, "404 Not Found"),
+
+    /**
+     * 不支持的Method
+     */
+    METHOD_NOT_SUPPORTED(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "Method Not Supported"),
+
+    /**
+     * MediaType不支持
+     */
+    MEDIA_TYPE_NOT_SUPPORTED(HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE, "Media Type Not Supported"),
+
+    /**
+     * 禁止访问
+     */
+    FORBIDDEN(HttpServletResponse.SC_FORBIDDEN, "403 Forbidden"),
+
+    /**
+     * 参数校验失败
+     */
+    PARAM_VALID_ERROR(HttpServletResponse.SC_BAD_REQUEST, "Parameter Validation Error"),
 
     /**
      * fall-back

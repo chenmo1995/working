@@ -27,6 +27,11 @@ public class DaemonDemo {
             e.printStackTrace();
         }
 
+
         System.out.println(Thread.currentThread().getName() + "\t" + " ----task is over");
+    }
+
+    public static void quickSort(){
+
     }
 }
