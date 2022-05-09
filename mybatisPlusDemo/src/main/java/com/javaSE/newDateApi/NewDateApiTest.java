@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.Scanner;
 
 /**
  * @author fdn
@@ -113,6 +114,13 @@ public class NewDateApiTest {
 
         String date5 = new SimpleDateFormat("yyyy年MM月dd").format(new Date());
         System.out.println(date5);
+
+        //获取当前时间
+        System.out.println("获取当前时间:" + LocalDateTime.now());
+        Date from = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
+        System.out.println("获取当前时间:" + new Date());
+        System.out.println("获取当前时间:" + from);
+        Scanner in = new Scanner(System.in);
     }
 
 }

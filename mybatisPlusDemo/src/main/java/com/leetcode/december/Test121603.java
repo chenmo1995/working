@@ -142,7 +142,7 @@ public class Test121603 {
      * @param k
      * @return
      */
-    public int[] maxSlidingWindow2(int[] nums, int k) {
+    public int[] maxSlidingWindow3(int[] nums, int k) {
         Deque<Integer> deque = new ArrayDeque<>();
         // 维护一个初始的单调递减的双端队列,注意，双端队列里面存储的是nums中元素的位置，递减指的是nums中该位置的元素的值递减
         for (int i = 0; i < k; i++) {

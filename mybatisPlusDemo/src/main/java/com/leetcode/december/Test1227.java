@@ -21,10 +21,14 @@ public class Test1227 {
         int result = 0;
         // [left, right)
         for (int i = 0, left = 0, right = 0; i < n; i++) {
-            while (ages[left] <= ages[i] * 0.5 + 7) {
+            if (ages[i] < 14) {
+                continue;
+            }
+            // left 是第一个满足 ages[left] > ages[i] * 0.5 + 7 的
+            while (left < i && ages[left] <= ages[i] * 0.5 + 7) {
                 left++;
             }
-            // [left, right + 1)  -->  [left, right]
+            // right 是第一个 ages[right + 1] > ages[i] 的
             while (right + 1 < n && ages[right + 1] <= ages[i]) {
                 right++;
             }

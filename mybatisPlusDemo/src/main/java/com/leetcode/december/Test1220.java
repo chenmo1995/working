@@ -128,67 +128,9 @@ public class Test1220 {
         Test1220 test1220 = new Test1220();
         int radius2 = test1220.findRadius2(new int[]{1, 2, 3, 4}, new int[]{1, 4});
         System.out.println(radius2);
-        System.out.println(test1220.isIP("00"));
+//        System.out.println(test1220.isIP("00"));
 //        System.out.println("0123456".substring(6));
 //        test1220.restoreIpAddresses("25525511135");
     }
 
-    /**
-     * 93. 复原 IP 地址
-     * <p>
-     * s = "25525511135" 你不能重新排序或删除 s 中的任何数字
-     *
-     * @param s
-     * @return
-     */
-    List<String> result;
-    StringBuilder path;
-
-    public List<String> restoreIpAddresses(String s) {
-        result = new ArrayList<>();
-        path = new StringBuilder();
-
-        backTracing(s, 0, 0);
-        return result;
-    }
-
-
-    private void backTracing(String s, int startIndex, int pointCount) {
-        if (path.length() == s.length() + 4) {
-            result.add(new String(path.deleteCharAt(path.length() - 1)));
-            return;
-        }
-
-        // 这也是切割
-        for (int i = startIndex; i < s.length() && pointCount <= 3; i++) {
-            // 切割[startIndex,i],然后检验是否合格，合格就进行下一层递归，不合格 结束本次for循环
-            String substring = s.substring(startIndex, i + 1);
-            if (isIP(substring)) {
-                path.append(substring).append(".");
-                pointCount++;
-                backTracing(s, i + 1, pointCount);
-                // 注意substring是重新生成新的字符串，不是对原串截取
-                String substring2 = path.substring(0, path.deleteCharAt(path.length() - 1).lastIndexOf(".") + 1);
-                path = new StringBuilder(substring2);
-                pointCount--;
-            } else {
-                break;
-            }
-
-        }
-    }
-
-
-    private boolean isIP(String substring) {
-        if (substring.startsWith("0")) {
-            if (substring.length() > 1) {
-                return false;
-            }
-        } else {
-            if (Integer.parseInt(substring) > 255) {
-                return false;
-            }
-        }
-        return true;
-    }
 }

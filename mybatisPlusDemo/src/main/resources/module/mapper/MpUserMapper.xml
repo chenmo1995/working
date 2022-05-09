@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bravo.demo.dao.MpUserMapper">
-    <resultMap id="BaseResultMap" type="com.fudn.mybatisplusdemo.module.pojo.entity.MpUserPojo">
+<mapper namespace="com.fudn.mybatisplusdemo.module.base.mapper.MpUserMapper">
+    <resultMap id="BaseResultMap" type="com.fudn.mybatisplusdemo.module.base.pojo.entity.MpUserPojo">
         <!--
           WARNING - @mbg.generated
         -->

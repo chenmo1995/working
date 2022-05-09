@@ -15,7 +15,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD,ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MyConstraint {
-    //只有一个参数, 默认名字一般是value.使用时参数可省略不写
+    //只有一个参数时, 默认名字一般用value，这样在使用的时候 参数 value 可省略不写
     String message();
 
     Class<?>[] groups() default { };

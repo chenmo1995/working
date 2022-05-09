@@ -19,7 +19,6 @@ public class Block {
 
         Lock lock = new ReentrantLock();
 
-
         new Thread(() -> {
             lock.lock();
             try {
@@ -59,4 +58,6 @@ public class Block {
             }
         }, "t2").start();
     }
+
+
 }

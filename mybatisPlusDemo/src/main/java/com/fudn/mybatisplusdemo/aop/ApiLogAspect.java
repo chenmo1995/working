@@ -19,15 +19,18 @@ import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.swing.text.html.Option;
+import java.util.Optional;
 
 /**
  * 参数日志切面，用于打印请求参数、返回值、接口耗时
+ * 由 @EnableAipLog 控制生效
  *
  * @author fdn
  * @since 2021-08-20 09:49
  */
 @Slf4j
-@Component
 @Aspect
 public class ApiLogAspect {
 
@@ -43,7 +46,7 @@ public class ApiLogAspect {
 
     /**
      * 切点
-     * 注意@within是注解标记在类上，@annotation是注解标记在方法上
+     * 注意 @within是注解标记在类上，@annotation 是注解标记在方法上
      */
     @Pointcut("!@annotation(com.fudn.mybatisplusdemo.aop.annotation.IgnoreApiLog)" +
             "&&(@within(com.fudn.mybatisplusdemo.aop.annotation.ApiLog)||" +
@@ -94,6 +97,8 @@ public class ApiLogAspect {
         log.info("=================【{}】{}操作==================", controllerSimpleName, operation);
         log.info("接口URL: {} {}", request.getRequestURL().toString(), request.getMethod());
         log.info("类名方法: {}#{}()", controllerName, methodName);
+        // 打印响应时间
+        log.info("响应时间: {}ms", System.currentTimeMillis() - Optional.ofNullable((Long) request.getAttribute("startTime")).orElse(System.currentTimeMillis()));
         log.info("远程地址: {}", getClientIp(request));
         // 打印请求参数 TODO 敏感字段排除
         log.info("请求参数: {}", getParamJSon(request, joinPoint));
@@ -125,7 +130,9 @@ public class ApiLogAspect {
         for (int i = 0; i < args.length; i++) {
             if (args[i] instanceof ServletRequest
                     || args[i] instanceof ServletResponse
-                    || args[i] instanceof MultipartFile) {
+                    || args[i] instanceof MultipartFile
+                    // 异常处理的日志，会在下面参数转换成 jsonString 的时候报错，所以不处理异常的参数
+                    || args[i] instanceof Exception) {
                 continue;
             }
             arguments[i] = args[i];
